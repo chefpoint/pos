@@ -11,7 +11,7 @@
   "dependencies": {
     "@mantine/core": "^4.2.12",
     "@mantine/dates": "^4.2.12",
-    "@mantine/form": "^4.2.12",
+    "@mantine/form": "^5.0.2",
     "@mantine/hooks": "^4.2.12",
     "@mantine/next": "^4.2.12",
     "@stitches/react": "^1.2.8",
