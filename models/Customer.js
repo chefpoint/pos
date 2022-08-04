@@ -12,39 +12,42 @@ module.exports =
   mongoose.models.Customer ||
   mongoose.model(
     'Customer',
-    new mongoose.Schema({
-      first_name: {
-        type: String,
-        minlength: 2,
-        maxlength: 30,
+    new mongoose.Schema(
+      {
+        first_name: {
+          type: String,
+          minlength: 2,
+          maxlength: 30,
+        },
+        last_name: {
+          type: String,
+          maxlength: 30,
+        },
+        tax_region: {
+          type: String,
+          maxlength: 2,
+        },
+        tax_number: {
+          type: String,
+          maxlength: 9,
+        },
+        contact_email: {
+          type: String,
+          maxlength: 50,
+        },
+        send_invoices: {
+          type: Boolean,
+          default: true,
+        },
+        reference: {
+          type: String,
+          maxlength: 30,
+        },
+        birthday: {
+          type: String,
+          maxlength: 30,
+        },
       },
-      last_name: {
-        type: String,
-        maxlength: 30,
-      },
-      tax_region: {
-        type: String,
-        maxlength: 2,
-      },
-      tax_number: {
-        type: String,
-        maxlength: 9,
-      },
-      contact_email: {
-        type: String,
-        maxlength: 50,
-      },
-      send_invoices: {
-        type: Boolean,
-        default: true,
-      },
-      reference: {
-        type: String,
-        maxlength: 30,
-      },
-      birthday: {
-        type: String,
-        maxlength: 30,
-      },
-    })
+      { timestamps: true }
+    )
   );

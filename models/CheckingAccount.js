@@ -11,29 +11,32 @@ import mongoose from 'mongoose';
 export default mongoose.models.CheckingAccount ||
   mongoose.model(
     'CheckingAccount',
-    new mongoose.Schema({
-      title: {
-        type: String,
-        minlength: 2,
-        maxlength: 30,
-        default: 'Untitled Checking Account',
+    new mongoose.Schema(
+      {
+        title: {
+          type: String,
+          minlength: 2,
+          maxlength: 30,
+          default: 'Untitled Checking Account',
+        },
+        client_name: {
+          type: String,
+          minlength: 2,
+          maxlength: 30,
+          required: true,
+        },
+        tax_region: {
+          type: String,
+          minlength: 2,
+          maxlength: 2,
+          default: 'PT',
+        },
+        tax_number: {
+          type: String,
+          minlength: 9,
+          maxlength: 9,
+        },
       },
-      client_name: {
-        type: String,
-        minlength: 2,
-        maxlength: 30,
-        required: true,
-      },
-      tax_region: {
-        type: String,
-        minlength: 2,
-        maxlength: 2,
-        default: 'PT',
-      },
-      tax_number: {
-        type: String,
-        minlength: 9,
-        maxlength: 9,
-      },
-    })
+      { timestamps: true }
+    )
   );

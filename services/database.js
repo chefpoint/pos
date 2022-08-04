@@ -6,7 +6,7 @@
 /* IMPORTS */
 import mongoose from 'mongoose';
 
-module.exports.connect = async function () {
+async function connect() {
   await mongoose
     .connect(process.env.MONGODB_CONNECTION_STRING)
     // .then(() => console.log('Connected.'))
@@ -16,9 +16,9 @@ module.exports.connect = async function () {
       console.log(error);
       process.exit();
     });
-};
+}
 
-module.exports.disconnect = async function () {
+async function disconnect() {
   await mongoose
     .disconnect()
     // .then(() => console.log('Disconnected from MongoDB.'))
@@ -27,4 +27,11 @@ module.exports.disconnect = async function () {
       console.log('At database.js > mongoose.disconnect()');
       console.log(error);
     });
+}
+
+const database = {
+  connect,
+  disconnect,
 };
+
+export default database;
