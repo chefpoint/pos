@@ -46,7 +46,9 @@ export default function SalesReport() {
   const [cardAmount, setCardAmount] = useState();
 
   const { data: transactions } = useSWR(
-    `/api/transactions/${appstate.device.location._id}?date=${selectedDate.toISOString()}`
+    `/api/transactions/${
+      appstate.device.location._id
+    }?dateStart=${selectedDate.toISOString()}&dateEnd=${selectedDate.toISOString()}`
   );
 
   useEffect(() => {

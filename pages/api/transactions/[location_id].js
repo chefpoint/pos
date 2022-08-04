@@ -25,10 +25,10 @@ export default async function listTransactions(req, res) {
 
   // 2. Try to fetch all matching transactions from the database
   try {
-    // Match the whole day for requested date
-    const startTimestamp = new Date(req.query.date);
+    // Match the whole day for requested dates
+    const startTimestamp = new Date(req.query.dateStart);
     startTimestamp.setHours(0, 0, 0, 0);
-    const endTimestamp = new Date(req.query.date);
+    const endTimestamp = new Date(req.query.dateEnd);
     endTimestamp.setHours(23, 59, 59, 999);
     // Find the transactions
     const allTransactions = await Transaction.find({
