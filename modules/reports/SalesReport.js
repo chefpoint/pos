@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from 'react';
 import ItemsList from './ItemsList';
 import { Appstate } from '../../context/Appstate';
 import useSWR from 'swr';
-import API from '../../services/API';
 
 /* * */
 /* SALES REPORT */
@@ -46,9 +45,10 @@ export default function SalesReport() {
   const [cardAmount, setCardAmount] = useState();
 
   const { data: transactions } = useSWR(
-    `/api/transactions/${
-      appstate.device.location._id
-    }?dateStart=${selectedDate.toISOString()}&dateEnd=${selectedDate.toISOString()}`
+    '/api/transactions/filter' +
+      `?location_id=${appstate.device.location._id}` +
+      `&date_start=${selectedDate.toISOString()}` +
+      `&date_end=${selectedDate.toISOString()}`
   );
 
   useEffect(() => {
