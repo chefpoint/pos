@@ -23,9 +23,18 @@ export default async function listTransactions(req, res) {
     return await res.status(500).json({ message: 'Database connection error.' });
   }
 
-  // 2. Try to fetch all transactions from the database
+  // 2. Try to fetch all matching transactions from the database
   try {
-    const allTransactions = await Transaction.find({ 'location._id': req.query.location_id });
+    // Match the whole day for requested date
+    const startTimestamp = new Date(req.query.date);
+    startTimestamp.setHours(0, 0, 0, 0);
+    const endTimestamp = new Date(req.query.date);
+    endTimestamp.setHours(23, 59, 59, 999);
+    // Find the transactions
+    const allTransactions = await Transaction.find({
+      'location._id': req.query.location_id, // Find only for this location_id
+      createdAt: { $gte: startTimestamp, $lt: endTimestamp }, // Find only for this date range
+    });
     return await res.status(200).send(allTransactions);
   } catch (err) {
     console.log(err);

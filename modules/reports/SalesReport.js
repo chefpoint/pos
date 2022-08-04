@@ -6,6 +6,7 @@ import { useContext, useEffect, useState } from 'react';
 import ItemsList from './ItemsList';
 import { Appstate } from '../../context/Appstate';
 import useSWR from 'swr';
+import API from '../../services/API';
 
 /* * */
 /* SALES REPORT */
@@ -38,13 +39,15 @@ export default function SalesReport() {
 
   const appstate = useContext(Appstate);
 
-  const { data: transactions } = useSWR(`/api/transactions/${appstate.device.location._id}`);
-
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const [totalSoldAmount, setTotalSoldAmount] = useState();
   const [cashAmount, setCashAmount] = useState();
   const [cardAmount, setCardAmount] = useState();
+
+  const { data: transactions } = useSWR(
+    `/api/transactions/${appstate.device.location._id}?date=${selectedDate.toISOString()}`
+  );
 
   useEffect(() => {
     // Check if transactions is set
@@ -57,18 +60,11 @@ export default function SalesReport() {
     transactions.forEach((transaction) => {
       // Check if it has invoice
       if (transaction.invoice) {
-        // Check if transaction matches selected date
-        const matchesYear = new Date(transaction.timestamp).getFullYear() === selectedDate?.getFullYear();
-        const matchesMonth = new Date(transaction.timestamp).getMonth() === selectedDate?.getMonth();
-        const matchesDay = new Date(transaction.timestamp).getDate() === selectedDate?.getDate();
-        // Check if transaction matches selected date
-        if (matchesYear && matchesMonth && matchesDay) {
-          totalSoldAmount += Number(transaction.invoice.amount_net);
-          if (transaction.payment.method_value === 'cash') {
-            cashAmount += Number(transaction.invoice.amount_gross);
-          } else if (transaction.payment.method_value === 'card') {
-            cardAmount += Number(transaction.invoice.amount_gross);
-          }
+        totalSoldAmount += Number(transaction.invoice.amount_net);
+        if (transaction.payment.method_value === 'cash') {
+          cashAmount += Number(transaction.invoice.amount_gross);
+        } else if (transaction.payment.method_value === 'card') {
+          cardAmount += Number(transaction.invoice.amount_gross);
         }
       }
     });
@@ -84,25 +80,18 @@ export default function SalesReport() {
     const combinedItems = [];
     // Loop through all transactions
     for (const transaction of transactions) {
-      // Check if transaction matches selected date
-      const matchesYear = new Date(transaction.timestamp).getFullYear() === selectedDate?.getFullYear();
-      const matchesMonth = new Date(transaction.timestamp).getMonth() === selectedDate?.getMonth();
-      const matchesDay = new Date(transaction.timestamp).getDate() === selectedDate?.getDate();
-      // Check if transaction matches selected date
-      if (matchesYear && matchesMonth && matchesDay) {
-        // If it matches, loop through each item in each transaction
-        for (const item of transaction.items) {
-          const index = combinedItems.findIndex((ci) => ci.variation_id === item.variation_id);
-          if (index < 0) {
-            combinedItems.push({
-              variation_id: item.variation_id,
-              product_title: item.product_title,
-              variation_title: item.variation_title,
-              qty: item.qty,
-            });
-          } else {
-            combinedItems[index].qty += 1;
-          }
+      // Loop through each item in each transaction
+      for (const item of transaction.items) {
+        const index = combinedItems.findIndex((ci) => ci.variation_id === item.variation_id);
+        if (index < 0) {
+          combinedItems.push({
+            variation_id: item.variation_id,
+            product_title: item.product_title,
+            variation_title: item.variation_title,
+            qty: item.qty,
+          });
+        } else {
+          combinedItems[index].qty += 1;
         }
       }
     }
