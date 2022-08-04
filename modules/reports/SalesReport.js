@@ -100,13 +100,18 @@ export default function SalesReport() {
     return combinedItems.sort((a, b) => b.qty - a.qty);
   }
 
+  function handleChangeDate(selection) {
+    const utcDate = new Date(selection.getTime() - selection.getTimezoneOffset() * 60000);
+    setSelectedDate(utcDate);
+  }
+
   return (
     <Pannel title={'Relatório de Vendas'}>
       <Wrapper>
         <DatePicker
           size='xl'
           value={selectedDate}
-          onChange={setSelectedDate}
+          onChange={handleChangeDate}
           maxDate={new Date()}
           dropdownType={'modal'}
         />
