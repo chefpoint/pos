@@ -2,7 +2,6 @@ import database from '../../../services/database';
 import Transaction from '../../../models/Transaction';
 import Device from '../../../models/Device';
 import CheckingAccount from '../../../models/CheckingAccount';
-import { DateTime } from 'luxon';
 
 export default async function createTransaction(req, res) {
   //
@@ -107,9 +106,6 @@ const prepareInvoice = (transaction) => {
     register_id: process.env.VENDUS_REGISTER_ID,
     // The type of document to create.
     type: 'FT',
-    // The date of the transaction.
-    // Using Luxon formating tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
-    date: DateTime.fromISO(transaction.timestamp).toFormat('y-LL-dd'),
     // Prepare items for invoice.
     items: [],
     // Setup invoice discounts
