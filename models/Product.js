@@ -48,7 +48,7 @@ export default mongoose.models.Product ||
               type: String,
               minlength: 3,
               maxlength: 3,
-              default: 'NOR', // NOR, INT, RED
+              default: 'INT', // NOR, INT, RED
             },
             apicbase: {
               recipe_id: {
