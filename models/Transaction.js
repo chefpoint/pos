@@ -15,12 +15,6 @@ module.exports =
     new mongoose.Schema(
       {
         //
-        // GENERAL
-        timestamp: {
-          type: String,
-          maxlength: 30,
-        },
-
         // DEVICE
         // In which device was this transaction closed.
         device: {

@@ -43,7 +43,7 @@ export default async function createTransaction(req, res) {
 
   // 5. If the Transaction was paid,
   // then create an invoice in Vendus.
-  if (req.body.payment?.is_paid) {
+  if (req.body.payment?.is_paid && req.body.payment?.should_invoice) {
     try {
       // 5.1. Format transaction into an invoice
       const preparedInvoice = prepareInvoice(req.body);
@@ -120,13 +120,19 @@ const prepareInvoice = (transaction) => {
 
   // Prepare each item according to Vendus API
   for (const item of transaction.items) {
-    invoice.items.push({
-      reference: item.variation_id,
-      title: item.product_title + ' - ' + item.variation_title,
-      qty: item.qty,
-      gross_price: item.price,
-      tax_id: item.tax_id,
-    });
+    // Skip if item has no price
+    if (item.price > 0) {
+      console.log('HEEERERERRERERE');
+      console.log(item.tax_id);
+      console.log('HEEERERERRERERE');
+      invoice.items.push({
+        reference: item.variation_id,
+        title: item.product_title + ' - ' + item.variation_title,
+        qty: item.qty,
+        gross_price: item.price,
+        tax_id: item.tax_id,
+      });
+    }
   }
 
   // If transaction has associated Tax Details, add it to invoice

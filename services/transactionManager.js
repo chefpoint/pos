@@ -18,7 +18,6 @@ async function create(appstate, order) {
   // 1. Build the Transaction object
   // This are all the components for each Transaction.
   const transaction = {
-    timestamp: new Date().toISOString(),
     device: null,
     location: null,
     user: null,
@@ -121,13 +120,21 @@ async function create(appstate, order) {
   // depending on the Payment Method used.
   switch (transaction.payment.method_value) {
     //
-    // Payment › Card, Cash or Free
+    // Payment › Card or Cash
     case 'card':
     case 'cash':
-    case 'free':
-      // For Card, Cash or Free payments,
-      // transactions are paid immediately.
+      // For Card or Cash payments,
+      // transactions are paid and should be invoiced immediately.
       transaction.payment.is_paid = true;
+      transaction.payment.should_invoice = true;
+      break;
+    //
+    // Payment › Free
+    case 'free':
+      // For Free transactions, items are considered paid
+      // but they should not produce an invoice.
+      transaction.payment.is_paid = true;
+      transaction.payment.should_invoice = false;
       break;
     //
     // Payment › Checking Account
@@ -138,6 +145,7 @@ async function create(appstate, order) {
       // share one single invoice and use the Tax details
       // of the associated CheckingAccount object.
       transaction.payment.is_paid = false;
+      transaction.payment.should_invoice = false;
       // Save the details of the corresponding Checking Account.
       transaction.checking_account = {
         _id: order.payment.checking_account._id,
