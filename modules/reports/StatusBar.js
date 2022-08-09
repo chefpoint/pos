@@ -1,6 +1,7 @@
 import { styled } from '@stitches/react';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { GoLinkExternal, GoRadioTower, GoSync, GoAlert } from 'react-icons/go';
+import useSWR from 'swr';
 import { Appstate } from '../../context/Appstate';
 import SalesReport from './SalesReport';
 
@@ -60,23 +61,35 @@ const Label = styled('div', {
 });
 
 const LocationLabel = styled(Label, {
-  color: '$success5',
-});
-
-const IconWrapper = styled('div', {
-  display: 'flex',
   variants: {
-    status: {
-      ok: {
+    connected: {
+      true: {
         color: '$success5',
       },
-      error: {
+      false: {
         color: '$danger5',
       },
     },
   },
   defaultVariants: {
-    status: 'ok',
+    connected: true,
+  },
+});
+
+const IconWrapper = styled('div', {
+  display: 'flex',
+  variants: {
+    connected: {
+      true: {
+        color: '$success5',
+      },
+      false: {
+        color: '$danger5',
+      },
+    },
+  },
+  defaultVariants: {
+    connected: true,
   },
 });
 
@@ -85,12 +98,25 @@ export default function StatusBar() {
 
   const appstate = useContext(Appstate);
 
-  const [isConnectionError, setIsConnectionError] = useState(false);
-  const [isSyncError, setIsSyncError] = useState(false);
+  const [hasStableConnection, setHasStableConnection] = useState(false);
 
   function handleOpenReport() {
     appstate.setOverlay(<SalesReport />);
   }
+
+  useEffect(() => {
+    const detectConnection = setInterval(async () => {
+      try {
+        // const res = await fetch(`https://static-global-s-msn-com.akamaized.net/hp-neu/sc/2b/a5ea21.ico?d=${Date.now()}`);
+        const res = await fetch(`/api/version/?d=${Date.now()}`);
+        if (res.ok) setHasStableConnection(true);
+        else throw new Error('Network failed.');
+      } catch (err) {
+        setHasStableConnection(false);
+      }
+    }, 1000);
+    return () => clearInterval(detectConnection);
+  });
 
   /* */
   /* RENDER */
@@ -102,27 +128,15 @@ export default function StatusBar() {
         <Label>Abrir Relatório do Dia</Label>
       </Wrapper>
       <StatusWrapper halign={'right'}>
-        <LocationLabel>{appstate.device?.location?.title}</LocationLabel>
+        <LocationLabel connected={hasStableConnection}>{appstate.device?.location?.title}</LocationLabel>
 
-        {isConnectionError ? (
-          <IconWrapper status={'error'}>
-            <GoRadioTower />
-          </IconWrapper>
-        ) : (
-          <IconWrapper status={'ok'}>
-            <GoRadioTower />
-          </IconWrapper>
-        )}
+        <IconWrapper connected={hasStableConnection}>
+          <GoRadioTower />
+        </IconWrapper>
 
-        {isSyncError ? (
-          <IconWrapper status={'error'}>
-            <GoSync />
-          </IconWrapper>
-        ) : (
-          <IconWrapper status={'ok'}>
-            <GoSync />
-          </IconWrapper>
-        )}
+        <IconWrapper connected={hasStableConnection}>
+          <GoSync />
+        </IconWrapper>
       </StatusWrapper>
     </Container>
   );
