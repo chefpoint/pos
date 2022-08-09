@@ -1,7 +1,6 @@
 import { styled } from '@stitches/react';
 import { useContext, useEffect, useState } from 'react';
-import { GoLinkExternal, GoRadioTower, GoSync, GoAlert } from 'react-icons/go';
-import useSWR from 'swr';
+import { GoLinkExternal, GoRadioTower, GoSync } from 'react-icons/go';
 import { Appstate } from '../../context/Appstate';
 import SalesReport from './SalesReport';
 
@@ -52,6 +51,19 @@ const Wrapper = styled('div', {
 
 const StatusWrapper = styled(Wrapper, {
   gap: '$md',
+  variants: {
+    connected: {
+      true: {
+        color: '$success5',
+      },
+      false: {
+        color: '$danger5',
+      },
+    },
+  },
+  defaultVariants: {
+    connected: true,
+  },
 });
 
 const Label = styled('div', {
@@ -60,37 +72,8 @@ const Label = styled('div', {
   fontWeight: '$medium',
 });
 
-const LocationLabel = styled(Label, {
-  variants: {
-    connected: {
-      true: {
-        color: '$success5',
-      },
-      false: {
-        color: '$danger5',
-      },
-    },
-  },
-  defaultVariants: {
-    connected: true,
-  },
-});
-
 const IconWrapper = styled('div', {
   display: 'flex',
-  variants: {
-    connected: {
-      true: {
-        color: '$success5',
-      },
-      false: {
-        color: '$danger5',
-      },
-    },
-  },
-  defaultVariants: {
-    connected: true,
-  },
 });
 
 export default function StatusBar() {
@@ -127,14 +110,12 @@ export default function StatusBar() {
         <GoLinkExternal />
         <Label>Abrir Relatório do Dia</Label>
       </Wrapper>
-      <StatusWrapper halign={'right'}>
-        <LocationLabel connected={hasStableConnection}>{appstate.device?.location?.title}</LocationLabel>
-
-        <IconWrapper connected={hasStableConnection}>
+      <StatusWrapper halign={'right'} connected={hasStableConnection}>
+        <Label connected={hasStableConnection}>{appstate.device?.location?.title}</Label>
+        <IconWrapper>
           <GoRadioTower />
         </IconWrapper>
-
-        <IconWrapper connected={hasStableConnection}>
+        <IconWrapper>
           <GoSync />
         </IconWrapper>
       </StatusWrapper>
