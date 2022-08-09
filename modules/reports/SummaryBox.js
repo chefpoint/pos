@@ -1,4 +1,5 @@
 import { styled } from '@stitches/react';
+import { Loader } from '@mantine/core';
 
 /* * */
 /* SUMMARY BOX */
@@ -17,6 +18,15 @@ const Container = styled('div', {
   borderRadius: '$sm',
   fontSize: '30px',
   alignItems: 'center',
+});
+
+const InnerWrapper = styled('div', {
+  width: '100%',
+  padding: '$md',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
 const Title = styled('div', {
@@ -46,10 +56,21 @@ const Value = styled('div', {
 /* LOGIC */
 
 export default function SummaryBox({ title, value }) {
+  //
+  // Check if there is a value
+  let isLoading = true;
+  if (value || value === 0) isLoading = false;
+
   return (
     <Container>
       <Title>{title}</Title>
-      <Value>{value}</Value>
+      {isLoading ? (
+        <InnerWrapper>
+          <Loader color='gray' size='sm' />
+        </InnerWrapper>
+      ) : (
+        <Value>{value}</Value>
+      )}
     </Container>
   );
 }

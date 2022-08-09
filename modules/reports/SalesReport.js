@@ -53,7 +53,12 @@ export default function SalesReport() {
 
   useEffect(() => {
     // Check if transactions is set
-    if (!transactions) return;
+    if (!transactions) {
+      setTotalSoldAmount();
+      setCashAmount();
+      setCardAmount();
+      return;
+    }
     // Define local variables
     let totalSoldAmount = 0;
     let cashAmount = 0;
@@ -77,7 +82,7 @@ export default function SalesReport() {
 
   function formatSoldItems() {
     // Check if transactions is set
-    if (!transactions) return [];
+    if (!transactions) return null;
     // Setup local variable
     const combinedItems = [];
     // Loop through all transactions
@@ -113,15 +118,22 @@ export default function SalesReport() {
           value={selectedDate}
           onChange={handleChangeDate}
           maxDate={new Date()}
+          clearable={false}
           dropdownType={'modal'}
         />
         <Grid>
           <SummaryBox
             title={'Total de Vendas s/ IVA'}
-            value={totalSoldAmount ? `${totalSoldAmount.toFixed(2)}€` : '0.00€'}
+            value={typeof totalSoldAmount !== 'undefined' ? `${totalSoldAmount.toFixed(2)}€` : null}
           />
-          <SummaryBox title={'Valor em Caixa'} value={cashAmount ? `${cashAmount.toFixed(2)}€` : '0.00€'} />
-          <SummaryBox title={'Valor em Multibanco'} value={cardAmount ? `${cardAmount.toFixed(2)}€` : '0.00€'} />
+          <SummaryBox
+            title={'Valor em Caixa'}
+            value={typeof cashAmount !== 'undefined' ? `${cashAmount.toFixed(2)}€` : null}
+          />
+          <SummaryBox
+            title={'Valor em Multibanco'}
+            value={typeof cardAmount !== 'undefined' ? `${cardAmount.toFixed(2)}€` : null}
+          />
         </Grid>
         <ItemsList data={formatSoldItems()} />
       </Wrapper>

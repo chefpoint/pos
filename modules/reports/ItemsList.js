@@ -1,4 +1,5 @@
 import { styled } from '@stitches/react';
+import { Loader } from '@mantine/core';
 
 /* * */
 /* ITEMS LIST */
@@ -88,10 +89,18 @@ const NoData = styled('div', {
 
 export default function ItemsList({ data }) {
   //
+  // Check if there is a value
+  let isLoading = true;
+  if (data || Array.isArray(data)) isLoading = false;
+
   return (
     <Container>
       <Title>Totais por Produto</Title>
-      {data.length ? (
+      {isLoading ? (
+        <NoData>
+          <Loader color='gray' size='sm' />
+        </NoData>
+      ) : data.length ? (
         <InnerWrapper>
           {data.map((item) => (
             <Row key={item.variation_id}>
