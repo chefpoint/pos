@@ -97,7 +97,7 @@ export default function StatusBar() {
       } catch (err) {
         setHasStableConnection(false);
       }
-    }, 1000);
+    }, 5000);
     return () => clearInterval(detectConnection);
   });
 
