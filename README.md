@@ -3,5 +3,5 @@
 
 ## CHEF POINT Point of Sale
 
-This is a Point of Sale app custom-built for Chef Point's operation. It simplifies the most used features, reducing number of taps and
-optimizing for speed and clarity.
+This is a Point of Sale app custom-built for Chef Point's operation. It simplifies the most used features, reducing
+number of taps and optimizing for speed and clarity.
