@@ -9,20 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@babel/core": "^7.18.10",
-    "@emotion/react": "^11.10.0",
+    "@babel/core": "^7.19.1",
+    "@emotion/react": "^11.10.4",
     "@emotion/server": "^11.10.0",
-    "@mantine/core": "^5.1.0",
-    "@mantine/dates": "^5.1.0",
-    "@mantine/form": "^5.1.0",
-    "@mantine/hooks": "^5.1.0",
-    "@mantine/next": "^5.1.0",
+    "@mantine/core": "^5.4.0",
+    "@mantine/dates": "^5.4.0",
+    "@mantine/form": "^5.4.0",
+    "@mantine/hooks": "^5.4.0",
+    "@mantine/next": "^5.4.0",
     "@stitches/react": "^1.2.8",
-    "dayjs": "^1.11.4",
+    "dayjs": "^1.11.5",
     "lottie-web": "^5.9.6",
-    "luxon": "^3.0.1",
-    "mongoose": "^6.5.1",
-    "next": "^12.2.4",
+    "luxon": "^3.0.3",
+    "mongoose": "^6.6.1",
+    "next": "^12.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
@@ -31,8 +31,8 @@
   },
   "devDependencies": {
     "@svgr/webpack": "^6.3.1",
-    "eslint": "8.21.0",
-    "eslint-config-next": "^12.2.4",
-    "typescript": "^4.7.4"
+    "eslint": "8.23.1",
+    "eslint-config-next": "^12.3.1",
+    "typescript": "^4.8.3"
   }
 }
