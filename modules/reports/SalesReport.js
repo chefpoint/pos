@@ -5,6 +5,7 @@ import { DatePicker } from '@mantine/dates';
 import { useContext, useEffect, useState } from 'react';
 import ItemsList from './ItemsList';
 import { Appstate } from '../../context/Appstate';
+import pjson from '../../package.json';
 import useSWR from 'swr';
 
 /* * */
@@ -28,6 +29,15 @@ const Grid = styled('div', {
   gridTemplateColumns: 'auto',
   gap: '$md',
   gridTemplateColumns: 'repeat(3, minmax(200px, 1fr))',
+});
+
+const AppVersion = styled('div', {
+  width: '100%',
+  textAlign: 'center',
+  color: '$gray10',
+  fontSize: '10px',
+  fontWeight: '$medium',
+  textTransform: 'uppercase',
 });
 
 /* */
@@ -136,6 +146,9 @@ export default function SalesReport() {
           />
         </Grid>
         <ItemsList data={formatSoldItems()} />
+        <AppVersion>
+          {pjson.name} - {pjson.version}
+        </AppVersion>
       </Wrapper>
     </Pannel>
   );
