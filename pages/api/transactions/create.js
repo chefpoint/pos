@@ -118,9 +118,6 @@ const prepareInvoice = (transaction) => {
   for (const item of transaction.items) {
     // Skip if item has no price
     if (item.price > 0) {
-      console.log('HEEERERERRERERE');
-      console.log(item.tax_id);
-      console.log('HEEERERERRERERE');
       invoice.items.push({
         reference: item.variation_id,
         title: item.product_title + ' - ' + item.variation_title,
