@@ -55,7 +55,6 @@ export default async function createTransaction(req, res) {
           Authorization: 'Basic ' + Buffer.from(process.env.VENDUS_API_KEY).toString('base64'),
         },
       });
-      console.log(response);
       // 5.3. Parse the response into JSON
       const invoice = await response.json();
       // 5.4. Check status of response
