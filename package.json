@@ -22,7 +22,7 @@
     "lottie-web": "^5.9.6",
     "luxon": "^3.0.3",
     "mongoose": "^6.6.1",
-    "next": "^12.3.1",
+    "next": "^13.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-icons": "^4.4.0",
