@@ -108,7 +108,7 @@ export default function SalesReport() {
             qty: item.qty,
           });
         } else {
-          combinedItems[index].qty += 1;
+          combinedItems[index].qty += item.qty;
         }
       }
     }
