@@ -61,16 +61,6 @@ export default function PaymentStart() {
 
   const alreadySentTransaction = useRef(false);
 
-  // Run on component mount
-  useEffect(() => {
-    // Check if transaction has been already processed:
-    // Learn more: https://github.com/reactwg/react-18/discussions/18
-    if (!alreadySentTransaction.current) {
-      initiatePayment();
-      alreadySentTransaction.current = true;
-    }
-  }, [initiatePayment]);
-
   const initiatePayment = useCallback(async () => {
     try {
       const result = await transactionManager.create(appstate, currentOrder);
@@ -87,6 +77,16 @@ export default function PaymentStart() {
       appstate.setOverlay(<PaymentResult color={'danger'} title={'Erro'} subtitle={'Tente novamente'} error={err} />);
     }
   }, [appstate, currentOrder]);
+
+  // Run on component mount
+  useEffect(() => {
+    // Check if transaction has been already processed:
+    // Learn more: https://github.com/reactwg/react-18/discussions/18
+    if (!alreadySentTransaction.current) {
+      initiatePayment();
+      alreadySentTransaction.current = true;
+    }
+  }, [initiatePayment]);
 
   return (
     <Pannel>
