@@ -95,7 +95,7 @@ export default function ChangeCalculator() {
   function handleClick(value) {
     // Convert the Number to String so it can be concatenated
     const totalMoneyString = String(totalMoney);
-    const newValueString = (totalMoneyString += value);
+    const newValueString = totalMoneyString + value;
     setTotalMoney(Number(newValueString));
   }
 
