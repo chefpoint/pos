@@ -15,7 +15,7 @@ const Container = styled('div', {
   display: 'grid',
   placeItems: 'stretch',
   placeContent: 'stretch',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
   gap: '$xs',
   marginBottom: '$md',
 });
@@ -33,10 +33,5 @@ export default function FolderGrid() {
     if (!appstate.hasCurrentFolder) appstate.setCurrentFolder(appstate.device?.layout?.folders[0]);
   });
 
-  return (
-    <Container>
-      {appstate.hasDevice &&
-        appstate.device.layout.folders.map((folder) => <FolderButton key={folder._id} folder={folder} />)}
-    </Container>
-  );
+  return <Container>{appstate.hasDevice && appstate.device.layout.folders.map((folder) => <FolderButton key={folder._id} folder={folder} />)}</Container>;
 }
