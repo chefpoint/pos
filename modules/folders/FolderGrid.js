@@ -15,7 +15,7 @@ const Container = styled('div', {
   display: 'grid',
   placeItems: 'stretch',
   placeContent: 'stretch',
-  gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+  gridTemplateColumns: 'repeat(4, 1fr)',
   gap: '$xs',
   marginBottom: '$md',
 });
