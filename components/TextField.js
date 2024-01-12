@@ -1,12 +1,8 @@
+/* * */
+
 import { styled } from '../stitches.config';
 
 /* * */
-/* TEXT FIELD */
-/* Explanation needed. */
-/* * */
-
-/* * */
-/* STYLES */
 
 const Input = styled('input', {
   width: '100%',
@@ -32,7 +28,8 @@ const Input = styled('input', {
   },
 });
 
+/* * */
+
 export default function TextField(props) {
-  //
   return <Input {...props} />;
 }
