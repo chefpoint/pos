@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/authentication/*": ["authentication/*"],
+      "@/styles/*": ["styles/*"],
+      "@/forms/*": ["forms/*"],
+      "@/components/*": ["components/*"],
+      "@/translations/*": ["translations/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/contexts/*": ["contexts/*"],
+      "@/services/*": ["services/*"],
+      "@/schemas/*": ["schemas/*"]
+    }
+  }
+}
