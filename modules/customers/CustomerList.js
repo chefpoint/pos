@@ -14,7 +14,7 @@ import Button from '@/components/Button';
 import TextField from '@/components/TextField';
 import ButtonBar from '@/components/ButtonBar';
 import AssociateOnlyNIF from '@/components/AssociateOnlyNIF/AssociateOnlyNIF';
-import CustomerCreateOrEdit from './CustomerCreateOrEdit';
+import CustomerCreateOrEdit from '@/components/CustomerCreateOrEdit/CustomerCreateOrEdit';
 
 import CustomersListRow from './CustomerListRow';
 import Icon from '@/components/Icon';

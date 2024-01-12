@@ -3,11 +3,57 @@
 :root {
   /* * */
 
+  /* COLOR / PRIMARY */
+  --color-primary-1: #edc9fc;
+  --color-primary-2: #d695f9;
+  --color-primary-3: #b55fee;
+  --color-primary-4: #9337de;
+  --color-primary-5: #6400c8;
+  --color-primary-6: #4d00ac;
+  --color-primary-7: #390090;
+  --color-primary-8: #280074;
+  --color-primary-9: #1c0060;
+
+  /* COLOR / DANGER */
+  --color-danger-1: #fde4cb;
+  --color-danger-2: #fcc397;
+  --color-danger-3: #f79863;
+  --color-danger-4: #f0703c;
+  --color-danger-5: #e63200;
+  --color-danger-6: #c51c00;
+  --color-danger-7: #a50b00;
+  --color-danger-8: #850000;
+  --color-danger-9: #6e0008;
+
+  /* COLOR / GRAY */
+  --color-gray-0: #ffffff;
+  --color-gray-1: #fdfcfd;
+  --color-gray-2: #f9f8f9;
+  --color-gray-3: #f4f2f4;
+  --color-gray-4: #eeedef;
+  --color-gray-5: #e9e8ea;
+  --color-gray-6: #e4e2e4;
+  --color-gray-7: #dcdbdd;
+  --color-gray-8: #c8c7cb;
+  --color-gray-9: #908e96;
+  --color-gray-10: #86848d;
+  --color-gray-11: #6f6e77;
+  --color-gray-12: #1a1523;
+
   /* SIZE */
   --size-xs: 5px;
   --size-sm: 10px;
   --size-md: 15px;
   --size-lg: 25px;
+
+  /* BORDER WIDTH */
+  --borderwidth-sm: 1px;
+  --borderwidth-md: 2px;
+
+  /* FONT WEIGHT */
+  --fontweight-regular: 500;
+  --fontweight-medium: 600;
+  --fontweight-bold: 700;
 
   /* * */
 }

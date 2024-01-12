@@ -7,7 +7,7 @@ import Pannel from '../../components/Pannel';
 import Button from '../../components/Button';
 import ButtonBar from '../../components/ButtonBar';
 import { LoadingOverlay } from '@mantine/core';
-import CustomerCreateOrEdit from './CustomerCreateOrEdit';
+import CustomerCreateOrEdit from '@/components/CustomerCreateOrEdit/CustomerCreateOrEdit';
 import { DateTime } from 'luxon';
 
 /* * */
@@ -74,20 +74,12 @@ export default function CustomerView({ customer_id }) {
   }
 
   return (
-    <Pannel
-      title={
-        customer?.first_name || customer?.last_name
-          ? `${customer.first_name} ${customer.last_name}`
-          : 'Em Atualização...'
-      }
-    >
+    <Pannel title={customer?.first_name || customer?.last_name ? `${customer.first_name} ${customer.last_name}` : 'Em Atualização...'}>
       {!customer && <LoadingOverlay visible={true} />}
       <InputGrid>
         <GridCell>
           <Label>Nome</Label>
-          <Value>
-            {customer?.first_name || customer?.first_name ? `${customer.first_name} ${customer.last_name}` : '-'}
-          </Value>
+          <Value>{customer?.first_name || customer?.first_name ? `${customer.first_name} ${customer.last_name}` : '-'}</Value>
         </GridCell>
         <GridCell>
           <Label>Data de Nascimento</Label>
@@ -120,7 +112,7 @@ export default function CustomerView({ customer_id }) {
         </GridCell>
       </InputGrid>
       <ButtonBar>
-        {currentOrder.customer ? (
+        {currentOrder.customer && currentOrder.customer._id === customer_id ? (
           <Button color={'danger'} onClick={handleRemove}>
             Desassociar
           </Button>
