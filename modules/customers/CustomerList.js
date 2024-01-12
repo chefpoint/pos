@@ -1,3 +1,5 @@
+/* * */
+
 import useSWR from 'swr';
 import { styled } from '@stitches/react';
 
@@ -7,23 +9,17 @@ import { CurrentOrder } from '../../context/CurrentOrder';
 
 import { GoPlus, GoSearch } from 'react-icons/go';
 
-import Pannel from '../../components/Pannel';
-import Button from '../../components/Button';
-import TextField from '../../components/TextField';
-import ButtonBar from '../../components/ButtonBar';
-import AssociateOnlyNIF from './AssociateOnlyNIF';
+import Pannel from '@/components/Pannel';
+import Button from '@/components/Button';
+import TextField from '@/components/TextField';
+import ButtonBar from '@/components/ButtonBar';
+import AssociateOnlyNIF from '@/components/AssociateOnlyNIF/AssociateOnlyNIF';
 import CustomerCreateOrEdit from './CustomerCreateOrEdit';
 
 import CustomersListRow from './CustomerListRow';
-import Icon from '../../components/Icon';
+import Icon from '@/components/Icon';
 
 /* * */
-/* CUSTOMER LIST */
-/* Explanation needed. */
-/* * */
-
-/* */
-/* STYLES */
 
 const Toolbar = styled('div', {
   display: 'grid',
@@ -96,10 +92,10 @@ const NoResultsMessage = styled('div', {
 });
 
 /* */
-/* LOGIC */
 
 export default function CustomerList() {
   //
+
   const { data: customers } = useSWR('/api/customers/');
 
   const appstate = useContext(Appstate);
@@ -163,33 +159,14 @@ export default function CustomerList() {
           <SearchBarIcon>
             <GoSearch />
           </SearchBarIcon>
-          <SearchBarTextField
-            name={'searchQuery'}
-            type={'text'}
-            placeholder={'Procurar por Nome, NIF, etc…'}
-            value={searchQuery}
-            onChange={handleSearchQueryChange}
-          />
+          <SearchBarTextField name={'searchQuery'} type={'text'} placeholder={'Procurar por Nome, NIF, etc…'} value={searchQuery} onChange={handleSearchQueryChange} />
         </SearchBar>
         <Icon color={'secondary'} onClick={handleCreateCustomer}>
           <GoPlus />
         </Icon>
       </Toolbar>
       {/*  */}
-      <ListContainer>
-        {filteredCustomers?.length ? (
-          filteredCustomers.map((customer) => (
-            <CustomersListRow
-              key={customer._id}
-              customer={customer}
-              onSelect={handleSelect}
-              selectedCustomer={selectedCustomer}
-            />
-          ))
-        ) : (
-          <NoResultsMessage>Nenhum Resultado Encontrado</NoResultsMessage>
-        )}
-      </ListContainer>
+      <ListContainer>{filteredCustomers?.length ? filteredCustomers.map((customer) => <CustomersListRow key={customer._id} customer={customer} onSelect={handleSelect} selectedCustomer={selectedCustomer} />) : <NoResultsMessage>Nenhum Resultado Encontrado</NoResultsMessage>}</ListContainer>
       <ButtonBar>
         <Button disabled={!selectedCustomer} onClick={handleAssociateCustomer}>
           Associar Cliente

@@ -1,29 +1,15 @@
+/* * */
+
+import styles from './AssociateOnlyNIF.module.css';
 import { styled } from '@stitches/react';
 import { useContext, useState } from 'react';
 import { Appstate } from '../../context/Appstate';
 import { CurrentOrder } from '../../context/CurrentOrder';
-import Pannel from '../../components/Pannel';
-import TextField from '../../components/TextField';
-import Button from '../../components/Button';
+import Pannel from '@/components/Pannel';
+import TextField from '@/components/TextField';
+import Button from '@/components/Button';
 
 /* * */
-/* ASSOCIATE ONLY NIF */
-/* Explanation needed. */
-/* * */
-
-/* */
-/* STYLES */
-
-const Container = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '$md',
-});
-
-const NifInputContainer = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: '150px 500px',
-});
 
 const Input = styled(TextField, {
   paddingLeft: '30px',
@@ -59,6 +45,9 @@ const NifNumberInput = styled(Input, {
 export default function AssociateOnlyNIF() {
   //
 
+  //
+  // A. Setup variables
+
   const appstate = useContext(Appstate);
   const currentOrder = useContext(CurrentOrder);
 
@@ -67,6 +56,9 @@ export default function AssociateOnlyNIF() {
 
   const [isValidNifNumber, setIsValidNifNumber] = useState(false);
   const [nifNumber, setNifNumber] = useState(currentOrder.customer?.tax_number || '');
+
+  //
+  // B. Handle actions
 
   function handleAddNif() {
     currentOrder.setCustomer({
@@ -114,47 +106,33 @@ export default function AssociateOnlyNIF() {
     setIsValidNifNumber(length && hasChanged);
   }
 
-  /* */
-  /* RENDER */
+  //
+  // C. Render components
 
   return (
-    <Pannel title={'Add Only NIF'}>
-      <Container>
-        <NifInputContainer>
-          <NifCountryInput
-            name={'nifCountry'}
-            type={'text'}
-            minLength={2}
-            maxLength={2}
-            placeholder={'PT'}
-            value={nifCountry}
-            onChange={handleNifCountryChange}
-          />
-          <NifNumberInput
-            name={'nifNumber'}
-            type={'number'}
-            maxLength={9}
-            placeholder={'_________'}
-            value={nifNumber}
-            onChange={handleNifNumberChange}
-          />
-        </NifInputContainer>
-        {/* <CustomerDetailInput label={'Email'} value={'yushiau'} type={'email'} onChange={({ target }) => console.log(target.value)} editMode={true} /> */}
+    <Pannel title={'Adicionar Número de Contribuinte'}>
+      <div className={styles.container}>
+        <div className={styles.innerWrapper}>
+          <NifCountryInput name={'nifCountry'} type={'text'} minLength={2} maxLength={2} placeholder={'PT'} value={nifCountry} onChange={handleNifCountryChange} />
+          <NifNumberInput name={'nifNumber'} type={'number'} maxLength={9} placeholder={'_________'} value={nifNumber} onChange={handleNifNumberChange} />
+        </div>
         {currentOrder.hasCustomer ? (
-          <Container>
+          <div className={styles.container}>
             <Button onClick={handleAddNif} disabled={!isValidNifCountry && !isValidNifNumber}>
               Atualizar NIF
             </Button>
             <Button color={'danger'} onClick={handleRemoveNif}>
               Remover
             </Button>
-          </Container>
+          </div>
         ) : (
           <Button onClick={handleAddNif} disabled={!isValidNifCountry && !isValidNifNumber}>
             Adicionar NIF
           </Button>
         )}
-      </Container>
+      </div>
     </Pannel>
   );
+
+  //
 }

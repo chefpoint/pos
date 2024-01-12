@@ -6,7 +6,7 @@ import { CurrentOrder } from '../../context/CurrentOrder';
 import Button from '../../components/Button';
 import CustomerList from './CustomerList';
 import CustomerView from './CustomerView';
-import AssociateOnlyNIF from './AssociateOnlyNIF';
+import AssociateOnlyNIF from '../../components/AssociateOnlyNIF/AssociateOnlyNIF';
 import { FaUserPlus, FaUserCheck, FaUserTimes } from 'react-icons/fa';
 
 /* * */
