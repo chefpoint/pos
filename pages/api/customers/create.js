@@ -52,6 +52,16 @@ export default async function createCustomer(req, res) {
     return;
   }
 
+  // 3. Validate customer object
+  try {
+    // If customer has no name
+    if (!req.body.first_name) req.body.first_name = req.body.reference;
+  } catch (err) {
+    console.log(err);
+    await res.status(409).json({ message: err.message });
+    return;
+  }
+
   // 4. Try to save a new document with req.body
   try {
     const newCustomer = await Customer(req.body).save();

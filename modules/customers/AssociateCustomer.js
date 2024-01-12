@@ -68,8 +68,10 @@ export default function AssociateCustomer() {
       // Even though every Card ID seems to have 10 digits, I don't know for sure if that is the case due to my limited testing abilities.
       // For this reason, the solution below was chosen instead of slicing the last X characters of the string.
       if (!currentOrder.hasCustomer) {
-        if (event.key == 'Enter') {
-          const matchedCustomer = customers.find((entries) => entries.reference === cardReader.current); // === is exact match
+        if (event.key === 'Enter' && !cardReader.current) {
+          cardReader.current = '';
+        } else if (event.key === 'Enter') {
+          const matchedCustomer = customers.find((entries) => entries.reference === cardReader.current);
           if (matchedCustomer) currentOrder.setCustomer(matchedCustomer);
           else console.log('Customer Not Found.'); // Use this to display an error in the UI
           cardReader.current = '';
@@ -81,7 +83,7 @@ export default function AssociateCustomer() {
             // The card reader device is very fast at 'typing' the Card ID. But it is not possible to differentiate
             // between the reader and regular key presses. Due to this, if keys are pressed in another context of the app,
             // they will be inclued in the card reader variable. For this, a timeout is set to clear the variable
-            // 100 miliseconds after the first keypress.
+            // 500 miliseconds after the first keypress.
             hasCardReaderTimeout.current = true;
             setTimeout(() => {
               cardReader.current = '';

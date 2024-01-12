@@ -119,15 +119,17 @@ export default function CustomerCreateOrEdit({ customer }) {
     <Pannel title={form.values.first_name || form.values.last_name ? `${form.values.first_name} ${form.values.last_name}` : 'Novo Cliente'}>
       <LoadingOverlay visible={isLoading} />
       {isError && <div className={styles.errorNotice}>{isError}</div>}
-      <div className={styles.inputGrid}>
+      <div className={styles.inputGridOne}>
         <TextInput placeholder={'Nome'} size={'xl'} {...form.getInputProps('first_name')} />
-        <TextInput placeholder={'Apelido'} size={'xl'} {...form.getInputProps('last_name')} />
-        <TextInput placeholder={'Nr. Cartão TP'} size={'xl'} {...form.getInputProps('reference')} />
-        <DatePicker placeholder={'Data de Nascimento'} size={'xl'} {...form.getInputProps('birthday')} />
-        <TextInput placeholder={'Região Fiscal'} maxLength={2} size={'xl'} {...form.getInputProps('tax_region')} />
-        <TextInput placeholder={'Número de Contribuinte'} maxLength={11} size={'xl'} {...form.getInputProps('tax_number')} />
-        <TextInput placeholder={'Email de Contacto'} size={'xl'} {...form.getInputProps('contact_email')} />
-        <Switch label="Enviar Faturas por Email" size={'xl'} checked={form.values.send_invoices} onChange={({ currentTarget }) => form.setFieldValue('send_invoices', currentTarget.checked)} />
+        <div className={styles.inputGridTwo}>
+          {/* <TextInput placeholder={'Região Fiscal'} maxLength={2} size={'xl'} {...form.getInputProps('tax_region')} /> */}
+          <TextInput placeholder={'Número de Contribuinte'} maxLength={11} size={'xl'} {...form.getInputProps('tax_number')} />
+          <TextInput placeholder={'Nr. Cartão TP'} size={'xl'} {...form.getInputProps('reference')} />
+        </div>
+        <div className={styles.inputGridTwo}>
+          <TextInput placeholder={'Email de Contacto'} size={'xl'} {...form.getInputProps('contact_email')} />
+          <Switch label="Enviar Faturas por Email" size={'xl'} checked={form.values.send_invoices} onChange={({ currentTarget }) => form.setFieldValue('send_invoices', currentTarget.checked)} />
+        </div>
       </div>
       <ButtonBar>
         <Button as={'button'} color={'secondary'} onClick={handleSave}>

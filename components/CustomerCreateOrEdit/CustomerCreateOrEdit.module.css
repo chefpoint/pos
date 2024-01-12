@@ -1,13 +1,21 @@
 /* * */
 /* INPUT GRID */
 
-.inputGrid {
+.inputGridOne {
+  display: grid;
+  place-items: stretch;
+  place-content: stretch;
+  grid-template-columns: 1fr;
+  gap: var(--size-md);
+  margin-bottom: var(--size-md);
+}
+
+.inputGridTwo {
   display: grid;
   place-items: stretch;
   place-content: stretch;
   grid-template-columns: 1fr 1fr;
   gap: var(--size-md);
-  margin-bottom: var(--size-md);
 }
 
 /* * */

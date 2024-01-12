@@ -8,7 +8,6 @@ import Button from '../../components/Button';
 import ButtonBar from '../../components/ButtonBar';
 import { LoadingOverlay } from '@mantine/core';
 import CustomerCreateOrEdit from '@/components/CustomerCreateOrEdit/CustomerCreateOrEdit';
-import { DateTime } from 'luxon';
 
 /* * */
 /* CUSTOMER VIEW */
@@ -18,7 +17,16 @@ import { DateTime } from 'luxon';
 /* */
 /* STYLES */
 
-const InputGrid = styled('div', {
+const InputGridOne = styled('div', {
+  display: 'grid',
+  placeItems: 'stretch',
+  placeContent: 'stretch',
+  gridTemplateColumns: '1fr',
+  gap: '$md',
+  marginBottom: '$md',
+});
+
+const InputGridTwo = styled('div', {
   display: 'grid',
   placeItems: 'stretch',
   placeContent: 'stretch',
@@ -76,41 +84,30 @@ export default function CustomerView({ customer_id }) {
   return (
     <Pannel title={customer?.first_name || customer?.last_name ? `${customer.first_name} ${customer.last_name}` : 'Em Atualização...'}>
       {!customer && <LoadingOverlay visible={true} />}
-      <InputGrid>
+      <InputGridOne>
         <GridCell>
           <Label>Nome</Label>
           <Value>{customer?.first_name || customer?.first_name ? `${customer.first_name} ${customer.last_name}` : '-'}</Value>
         </GridCell>
         <GridCell>
-          <Label>Data de Nascimento</Label>
-          <Value>
-            {customer?.birthday
-              ? DateTime.fromISO(customer.birthday)
-                  .setLocale('pt-pt')
-                  .toLocaleString({
-                    ...DateTime.DATE_SHORT,
-                    month: 'long',
-                  })
-              : '-'}
-          </Value>
-        </GridCell>
-        <GridCell>
-          <Label>NIF</Label>
+          <Label>NIF / Número de Contribuinte</Label>
           <Value>{customer?.tax_number ? `${customer?.tax_region}${customer.tax_number}` : '-'}</Value>
-        </GridCell>
-        <GridCell>
-          <Label>Email de Contacto</Label>
-          <Value>{customer?.contact_email || '-'}</Value>
-        </GridCell>
-        <GridCell>
-          <Label>Enviar Faturas?</Label>
-          <Value>{customer?.send_invoices ? 'Sim' : 'Não'}</Value>
         </GridCell>
         <GridCell>
           <Label>Nr. Cartão TP</Label>
           <Value>{customer?.reference || '-'}</Value>
         </GridCell>
-      </InputGrid>
+        <InputGridTwo>
+          <GridCell>
+            <Label>Email de Contacto</Label>
+            <Value>{customer?.contact_email || '-'}</Value>
+          </GridCell>
+          <GridCell>
+            <Label>Enviar Faturas?</Label>
+            <Value>{customer?.send_invoices ? 'Sim' : 'Não'}</Value>
+          </GridCell>
+        </InputGridTwo>
+      </InputGridOne>
       <ButtonBar>
         {currentOrder.customer && currentOrder.customer._id === customer_id ? (
           <Button color={'danger'} onClick={handleRemove}>
