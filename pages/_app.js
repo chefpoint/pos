@@ -1,3 +1,5 @@
+/* * */
+
 import { SWRConfig } from 'swr';
 import AppstateProvider from '../context/Appstate';
 import CurrentOrderProvider from '../context/CurrentOrder';
@@ -5,17 +7,11 @@ import BrowserConfig from '../components/BrowserConfig';
 import Refresh from '../components/Refresh.js';
 
 /* * */
-/* KIOSK */
-/* The app starting point. */
-/* * */
+
+import '@/styles/reset.css';
+import '@/styles/default.css';
 
 /* * */
-/* STYLES */
-
-import '../styles/reset.css';
-
-/* * */
-/* LOGIC */
 
 export default function Kiosk({ Component, pageProps }) {
   return (
