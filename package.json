@@ -1,9 +1,10 @@
 {
     "name": "@chefpoint/pos",
-    "version": "2023.1.19",
+    "version": "2024.01.12-0306",
     "private": true,
     "scripts": {
         "dev": "next dev",
+        "bump": "node bump-version.js",
         "build": "next build",
         "start": "next start",
         "lint": "next lint"

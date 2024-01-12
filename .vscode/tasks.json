@@ -2,18 +2,25 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "Start POS",
+      "detail": "Start local development server with 'npm run dev'",
       "type": "npm",
       "script": "dev",
-      "problemMatcher": [],
-      "label": "Start Project Locally",
-      "detail": "Start local development server with 'next dev'"
+      "problemMatcher": []
+    },
+    {
+      "label": "Install POS Dependencies",
+      "detail": "Install project dependencies.",
+      "type": "npm",
+      "script": "install",
+      "problemMatcher": []
     },
     {
       "type": "npm",
-      "script": "install",
+      "script": "bump",
       "problemMatcher": [],
-      "label": "Initialize Repository",
-      "detail": "Install project dependencies."
+      "label": "Bump POS Version",
+      "detail": "Increase version number to now."
     }
   ]
 }
