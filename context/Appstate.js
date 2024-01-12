@@ -59,7 +59,7 @@ export default function AppstateProvider({ children }) {
       // Milliseconds between now & last activity
       const elapsedMilliseconds = Math.abs(new Date(lastActivity) - new Date());
       // Get timeout form device settings or default to 1,5 minutes
-      const inactivityTimeout = deviceData?.settings?.inactivity_timeout || 90000;
+      const inactivityTimeout = deviceData?.settings?.inactivity_timeout || 300000;
       // If elapsed time is longer than timeout logout user
       if (elapsedMilliseconds > inactivityTimeout) {
         logoutUser();
