@@ -12,8 +12,7 @@ import Button from '@/components/Button';
 import ButtonBar from '@/components/ButtonBar';
 
 import { useForm, yupResolver } from '@mantine/form';
-import { TextInput, LoadingOverlay, Switch } from '@mantine/core';
-import { DatePicker } from '@mantine/dates';
+import { TextInput, LoadingOverlay } from '@mantine/core';
 import Schema from '../../schemas/Customer';
 import CustomerList from '../../modules/customers/CustomerList';
 import CustomerView from '../../modules/customers/CustomerView';
@@ -120,15 +119,14 @@ export default function CustomerCreateOrEdit({ customer }) {
       <LoadingOverlay visible={isLoading} />
       {isError && <div className={styles.errorNotice}>{isError}</div>}
       <div className={styles.inputGridOne}>
-        <TextInput placeholder={'Nome'} size={'xl'} {...form.getInputProps('first_name')} />
+        <TextInput label={'Nome (opcional)'} placeholder={'Nome'} size={'xl'} {...form.getInputProps('first_name')} />
         <div className={styles.inputGridTwo}>
           {/* <TextInput placeholder={'Região Fiscal'} maxLength={2} size={'xl'} {...form.getInputProps('tax_region')} /> */}
-          <TextInput placeholder={'Número de Contribuinte'} maxLength={11} size={'xl'} {...form.getInputProps('tax_number')} />
-          <TextInput placeholder={'Nr. Cartão TP'} size={'xl'} {...form.getInputProps('reference')} />
+          <TextInput label={'Nr. de Contribuinte (obrigatório)'} placeholder={'Número de Contribuinte'} maxLength={11} size={'xl'} {...form.getInputProps('tax_number')} />
+          <TextInput label={'Nr. Cartão TP (recomendado)'} placeholder={'Nr. Cartão TP'} size={'xl'} {...form.getInputProps('reference')} />
         </div>
-        <div className={styles.inputGridTwo}>
-          <TextInput placeholder={'Email de Contacto'} size={'xl'} {...form.getInputProps('contact_email')} />
-          <Switch label="Enviar Faturas por Email" size={'xl'} checked={form.values.send_invoices} onChange={({ currentTarget }) => form.setFieldValue('send_invoices', currentTarget.checked)} />
+        <div className={styles.inputGridOne}>
+          <TextInput label={'Email p/ Enviar Faturas (opcional)'} placeholder={'Email de Contacto'} size={'xl'} {...form.getInputProps('contact_email')} />
         </div>
       </div>
       <ButtonBar>

@@ -1,6 +1,6 @@
 {
     "name": "@chefpoint/pos",
-    "version": "2024.01.12-0306",
+    "version": "2024.01.13-0248",
     "private": true,
     "scripts": {
         "dev": "next dev",

@@ -171,7 +171,7 @@ export default function CustomerList() {
         <Button disabled={!selectedCustomer} onClick={handleAssociateCustomer}>
           Associar Cliente
         </Button>
-        <Button color={'secondary'} onClick={handleAssociateOnlyNIF}>
+        <Button color={selectedCustomer ? 'secondary' : 'primary'} onClick={handleAssociateOnlyNIF}>
           Apenas NIF
         </Button>
       </ButtonBar>
