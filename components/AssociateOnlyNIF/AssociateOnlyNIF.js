@@ -114,7 +114,7 @@ export default function AssociateOnlyNIF() {
       <div className={styles.container}>
         <div className={styles.innerWrapper}>
           <NifCountryInput name={'nifCountry'} type={'text'} minLength={2} maxLength={2} placeholder={'PT'} value={nifCountry} onChange={handleNifCountryChange} />
-          <NifNumberInput name={'nifNumber'} type={'number'} maxLength={9} placeholder={'_________'} value={nifNumber} onChange={handleNifNumberChange} />
+          <NifNumberInput name={'nifNumber'} type={'number'} maxLength={9} placeholder={'_________'} value={nifNumber} onChange={handleNifNumberChange} autoFocus={true} />
         </div>
         {currentOrder.hasCustomer ? (
           <div className={styles.container}>
