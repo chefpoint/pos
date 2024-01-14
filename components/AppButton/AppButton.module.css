@@ -6,7 +6,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: var(--size-sm) var(--size-lg);
+  padding: var(--size-md) var(--size-lg);
   border-width: var(--borderwidth-md);
   border-style: solid;
   border-radius: var(--borderradius-md);
@@ -14,17 +14,6 @@
   font-weight: var(--fontweight-bold);
   text-transform: uppercase;
   cursor: pointer;
-}
-
-/* * */
-/* DISABLED */
-
-.container:disabled {
-  cursor: not-allowed;
-  color: var(--color-gray-6);
-  background-color: var(--color-gray-2);
-  border-color: var(--color-gray-4);
-  box-shadow: none;
 }
 
 /* * */
@@ -105,4 +94,16 @@
   background-color: var(--color-danger-6);
   border-color: var(--color-danger-9);
   box-shadow: var(--boxshadow-sm);
+}
+
+/* * */
+/* COLOR / DISABLED */
+
+.disabled,
+.disabled:active {
+  cursor: not-allowed;
+  color: var(--color-gray-6);
+  background-color: var(--color-gray-2);
+  border-color: var(--color-gray-4);
+  box-shadow: none;
 }

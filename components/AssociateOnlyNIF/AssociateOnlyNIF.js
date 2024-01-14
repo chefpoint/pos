@@ -7,7 +7,7 @@ import { Appstate } from '../../context/Appstate';
 import { CurrentOrder } from '../../context/CurrentOrder';
 import Pannel from '@/components/Pannel';
 import TextField from '@/components/TextField';
-import Button from '@/components/Button';
+import AppButton from '@/components/AppButton/AppButton';
 
 /* * */
 
@@ -61,6 +61,7 @@ export default function AssociateOnlyNIF() {
   // B. Handle actions
 
   function handleAddNif() {
+    if (!isValidNifCountry && !isValidNifNumber) return;
     currentOrder.setCustomer({
       isOnlyNif: true,
       tax_country: nifCountry || 'PT',
@@ -118,17 +119,17 @@ export default function AssociateOnlyNIF() {
         </div>
         {currentOrder.hasCustomer ? (
           <div className={styles.container}>
-            <Button onClick={handleAddNif} disabled={!isValidNifCountry && !isValidNifNumber}>
+            <AppButton disabled={!isValidNifCountry && !isValidNifNumber} onClick={handleAddNif}>
               Atualizar NIF
-            </Button>
-            <Button color={'danger'} onClick={handleRemoveNif}>
+            </AppButton>
+            <AppButton color={'danger'} onClick={handleRemoveNif}>
               Remover
-            </Button>
+            </AppButton>
           </div>
         ) : (
-          <Button onClick={handleAddNif} disabled={!isValidNifCountry && !isValidNifNumber}>
+          <AppButton disabled={!isValidNifCountry && !isValidNifNumber} onClick={handleAddNif}>
             Adicionar NIF
-          </Button>
+          </AppButton>
         )}
       </div>
     </Pannel>

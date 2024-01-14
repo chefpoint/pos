@@ -4,9 +4,9 @@ import styles from './AppButton.module.css';
 
 /* * */
 
-export default function AppButton({ color = 'primary', className, children, ...props }) {
+export default function AppButton({ color = 'primary', disabled = false, className, children, ...props }) {
   return (
-    <div className={`${styles.container} ${styles[color]} ${className}`} {...props}>
+    <div className={`${styles.container} ${!disabled && styles[color]} ${disabled && styles.disabled} ${className}`} {...props}>
       {children}
     </div>
   );
