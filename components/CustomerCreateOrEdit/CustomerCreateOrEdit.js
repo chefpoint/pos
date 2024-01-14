@@ -5,12 +5,10 @@ import useSWR from 'swr';
 import { useContext, useState, useEffect, useRef } from 'react';
 import { Appstate } from '@/contexts/Appstate';
 import { CurrentOrder } from '@/contexts/CurrentOrder';
-import API from '../../services/API';
-
+import API from '@/services/API';
 import Pannel from '@/components/Pannel';
-import Button from '@/components/Button';
+import AppButton from '@/components/AppButton/AppButton';
 import ButtonBar from '@/components/ButtonBar';
-
 import { useForm, yupResolver } from '@mantine/form';
 import { TextInput, LoadingOverlay } from '@mantine/core';
 import Schema from '../../schemas/Customer';
@@ -42,7 +40,7 @@ export default function CustomerCreateOrEdit({ customer }) {
   // C. Setup form
 
   const form = useForm({
-    schema: yupResolver(Schema),
+    validate: yupResolver(Schema),
     initialValues: {
       first_name: '',
       last_name: '',
@@ -88,7 +86,6 @@ export default function CustomerCreateOrEdit({ customer }) {
     try {
       setIsError(false);
       setIsLoading(true);
-      if (!form.isValid()) return;
       if (customer) {
         // Update existing customer
         const response = await API({ service: 'customers', operation: 'edit', resourceId: customer._id, method: 'PUT', body: form.values });
@@ -130,12 +127,12 @@ export default function CustomerCreateOrEdit({ customer }) {
         </div>
       </div>
       <ButtonBar>
-        <Button as={'button'} color={'secondary'} onClick={handleSave}>
+        <AppButton color={'secondary'} onClick={handleSave} disabled={false}>
           Guardar Alterações
-        </Button>
-        <Button color={'danger'} onClick={handleCancel}>
+        </AppButton>
+        <AppButton color={'danger'} onClick={handleCancel}>
           Descartar
-        </Button>
+        </AppButton>
       </ButtonBar>
     </Pannel>
   );
