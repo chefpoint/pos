@@ -41,7 +41,7 @@ export default function AppStatus() {
 
   return (
     <div className={`${styles.container} ${versionLoading && styles.waiting} ${versionError && styles.error} ${versionData && styles.connected}`}>
-      <p className={styles.appVersion}>{pjson.version}</p>
+      <p className={`${styles.appVersion} ${versionData && versionData.latest !== pjson.version && styles.outdatedVersion}`}>{pjson.version}</p>
       <p className={styles.locationName}>{appstate.device?.location?.title || '• • •'}</p>
       <div className={styles.iconWrapper}>
         <IconAntenna size={20} />
