@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
         <ColorSchemeScript />
         <title>CHEF POINT Kiosk</title>
         <style id="stitches" dangerouslySetInnerHTML={{ __html: getCssText() }} />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
       </head>
       <body>
         <Providers>{children}</Providers>
