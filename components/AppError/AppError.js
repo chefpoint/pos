@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 
 /* * */
 
-export default function AppError({ type = 'invalid_device_code' }) {
+export default function AppError({ message }) {
   //
 
   //
@@ -29,22 +29,13 @@ export default function AppError({ type = 'invalid_device_code' }) {
   //
   // C. Render components
 
-  if (type === 'invalid_device_code') {
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Invalid Code</h1>
-        <h2 className={styles.subtitle}>Shake your device to fix</h2>
-        <h2 className={styles.subtitle}>A app vai reiniciar em {reloadInSeconds} segundos</h2>
-      </div>
-    );
-  } else {
-    return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>Ocorreu um Erro</h1>
-        <h2 className={styles.subtitle}>A app vai reiniciar em {reloadInSeconds} segundos</h2>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.container}>
+      <h1 className={styles.title}>Ocorreu um Erro</h1>
+      <h2 className={styles.subtitle}>{message || 'Erro Desconhecido'}</h2>
+      <h2 className={styles.subtitle}>A app vai reiniciar em {reloadInSeconds} segundos</h2>
+    </div>
+  );
 
   //
 }

@@ -41,8 +41,8 @@ export default function AppMain() {
   // C. Transform data
 
   useEffect(() => {
-    if (params.device_code && !deviceError) appstate.setDevice(deviceData);
-    else router.push('/');
+    if (deviceData) appstate.setDevice(deviceData);
+    if (deviceError) throw new Error('Invalid Device Code');
   }, [appstate, deviceData, deviceError, params.device_code, router]);
 
   useEffect(() => {
