@@ -25,7 +25,8 @@
   border-color: var(--color-primary-6);
 }
 
-.primary:active {
+.primary:active,
+.primary:active * {
   color: var(--color-primary-2);
   background-color: var(--color-primary-6);
   border-color: var(--color-primary-9);
@@ -41,7 +42,8 @@
   border-color: var(--color-gray-7);
 }
 
-.secondary:active {
+.secondary:active,
+.secondary:active * {
   color: var(--color-gray-12);
   background-color: var(--color-gray-8);
   border-color: var(--color-gray-9);
@@ -57,7 +59,8 @@
   border-color: var(--color-success-6);
 }
 
-.success:active {
+.success:active,
+.success:active * {
   color: var(--color-success-9);
   background-color: var(--color-success-6);
   border-color: var(--color-success-9);
@@ -73,7 +76,8 @@
   border-color: var(--color-warning-6);
 }
 
-.warning:active {
+.warning:active,
+.warning:active * {
   color: var(--color-warning-9);
   background-color: var(--color-warning-6);
   border-color: var(--color-warning-9);
@@ -89,7 +93,8 @@
   border-color: var(--color-danger-6);
 }
 
-.danger:active {
+.danger:active,
+.danger:active * {
   color: var(--color-danger-9);
   background-color: var(--color-danger-6);
   border-color: var(--color-danger-9);
@@ -100,7 +105,8 @@
 /* COLOR / DISABLED */
 
 .disabled,
-.disabled:active {
+.disabled:active,
+.disabled:active * {
   cursor: not-allowed;
   color: var(--color-gray-6);
   background-color: var(--color-gray-2);
