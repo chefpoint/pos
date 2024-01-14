@@ -2,7 +2,7 @@
 
 /* * */
 
-import styles from './AppWrapper.module.css';
+import styles from './AppMain.module.css';
 import { useEffect, useContext } from 'react';
 import { Appstate } from '@/contexts/Appstate';
 import { useRouter, useParams } from 'next/navigation';
@@ -21,7 +21,7 @@ import AppStatus from '@/components/AppStatus/AppStatus';
 
 /* * */
 
-export default function AppWrapper() {
+export default function AppMain() {
   //
 
   //
@@ -56,7 +56,7 @@ export default function AppWrapper() {
           <ProductGrid />
         </div>
         <div className={styles.checkoutPanel}>
-          {/* <UserButton /> */}
+          <UserButton />
           <CustomerButton />
           <div className={styles.innerCheckoutWrapper}>
             <OrderDetails />

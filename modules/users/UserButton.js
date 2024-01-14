@@ -100,7 +100,7 @@ export default function UserButton() {
       {!appstate.hasCurrentUser && (
         <LockOverlay onClick={handleLockUnlock}>
           <GoLock />
-          <Image src={'/brand/chefpoint-logo-light.svg'} width={250} height={50} alt={'Chef Point - Leading Food & Beverages Solutions'} />
+          <Image src={'/brand/chefpoint-logo-light.svg'} width={0} height={0} alt={'Chef Point - Leading Food & Beverages Solutions'} style={{ width: 250, height: 'auto' }} />
           {environment && <p>{environment}</p>}
         </LockOverlay>
       )}

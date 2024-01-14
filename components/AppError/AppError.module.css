@@ -1,0 +1,29 @@
+/* * */
+/* CONTAINER */
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: var(--size-lg);
+  height: 100vh;
+}
+
+/* * */
+/* TITLE */
+
+.title {
+  font-size: 30px;
+  font-weight: var(--fontweight-bold);
+  text-transform: uppercase;
+}
+
+/* * */
+/* SUBTITLE */
+
+.subtitle {
+  font-size: 20px;
+  font-weight: var(--fontweight-medium);
+  text-transform: uppercase;
+}
