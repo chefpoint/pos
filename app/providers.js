@@ -4,14 +4,12 @@
 
 import { SWRConfig } from 'swr';
 import { MantineProvider } from '@mantine/core';
-
 import AppstateProvider from '@/contexts/Appstate';
 import CurrentOrderProvider from '@/contexts/CurrentOrder';
-import Refresh from '@/components/Refresh.js';
 
 /* * */
 
-export default function Providers({ children, session }) {
+export default function Providers({ children }) {
   //
 
   //
@@ -37,12 +35,9 @@ export default function Providers({ children, session }) {
 
   return (
     <SWRConfig value={swrOptions}>
-      <MantineProvider defaultColorScheme="auto">
+      <MantineProvider defaultColorScheme="light">
         <AppstateProvider>
-          <CurrentOrderProvider>
-            <Refresh />
-            {children}
-          </CurrentOrderProvider>
+          <CurrentOrderProvider>{children}</CurrentOrderProvider>
         </AppstateProvider>
       </MantineProvider>
     </SWRConfig>

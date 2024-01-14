@@ -5,8 +5,6 @@ import { CurrentOrder } from '../../context/CurrentOrder';
 import Image from 'next/image';
 import VariationSelector from './VariationSelector';
 
-import placeholder from '/public/media/products/placeholder.jpg';
-
 /* * */
 /* PRODUCT SLOT */
 /* Explanation needed. */
@@ -94,12 +92,13 @@ export default function ProductSlot({ product }) {
         <Image
           loader={productImageLoader}
           src={product.image}
-          priority={true}
-          layout={'fill'}
-          objectFit={'cover'}
           alt={product.title}
-          // placeholder={'blur'}
-          // blurDataURL={'/media/products/placeholder.jpg'}
+          priority={true}
+          sizes="500px"
+          fill
+          style={{
+            objectFit: 'cover',
+          }}
         />
       </ImageWrapper>
       <Label>{product.short_title ? product.short_title : product.title}</Label>

@@ -13,12 +13,25 @@
   color: var(--color-warning-5);
 }
 
+.error {
+  color: var(--color-danger-5);
+}
+
 .connected {
   color: var(--color-success-5);
 }
 
-.error {
-  color: var(--color-danger-5);
+/* * */
+/* APP VERSION */
+
+.appVersion {
+  font-size: 12px;
+  font-weight: var(--fontweight-medium);
+  text-transform: uppercase;
+  line-height: 1;
+  white-space: nowrap;
+  color: var(--color-gray-7);
+  padding-right: var(--size-md);
 }
 
 /* * */
@@ -29,6 +42,7 @@
   font-weight: var(--fontweight-medium);
   text-transform: uppercase;
   line-height: 1;
+  white-space: nowrap;
 }
 
 /* * */

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@/root/*": ["./*"],
       "@/authentication/*": ["authentication/*"],
       "@/styles/*": ["styles/*"],
       "@/forms/*": ["forms/*"],

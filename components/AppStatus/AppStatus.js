@@ -1,9 +1,14 @@
+'use client';
+
 /* * */
 
+import useSWR from 'swr';
+import pjson from '@/root/package.json';
 import styles from './AppStatus.module.css';
 import { Appstate } from '@/contexts/Appstate';
+import { CurrentOrder } from '@/contexts/CurrentOrder';
 import { IconAntenna, IconRefresh } from '@tabler/icons-react';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 
 /* * */
 
@@ -13,31 +18,31 @@ export default function AppStatus() {
   // A. Setup variables
 
   const appstate = useContext(Appstate);
-  const [connectionStatus, setConnectionStatus] = useState('waiting');
+  const currentOrder = useContext(CurrentOrder);
 
   //
-  // B. Transform data
+  // B. Fetch data
+
+  const { data: versionData, isLoading: versionLoading, error: versionError } = useSWR('/api/version');
+
+  //
+  // C. Transform data
 
   useEffect(() => {
-    const detectConnection = setInterval(async () => {
-      try {
-        // const res = await fetch(`https://static-global-s-msn-com.akamaized.net/hp-neu/sc/2b/a5ea21.ico?d=${Date.now()}`);
-        const res = await fetch(`/api/version/?d=${Date.now()}`);
-        if (res.ok) setConnectionStatus('connected');
-        else throw new Error('Network failed.');
-      } catch (err) {
-        setConnectionStatus('error');
+    if (!currentOrder.hasItems && !currentOrder.hasCustomer) {
+      if (versionData && versionData.latest !== pjson.version) {
+        window.location.reload();
       }
-    }, 5000);
-    return () => clearInterval(detectConnection);
-  });
+    }
+  }, [currentOrder.hasCustomer, currentOrder.hasItems, versionData]);
 
   //
-  // C. Render components
+  // D. Render components
 
   return (
-    <div className={`${styles.container} ${connectionStatus === 'waiting' && styles.waiting} ${connectionStatus === 'connected' && styles.connected} ${connectionStatus === 'error' && styles.error}`}>
-      <p className={styles.locationName}>{appstate.device?.location?.title || 'Loading'}</p>
+    <div className={`${styles.container} ${versionLoading && styles.waiting} ${versionError && styles.error} ${versionData && styles.connected}`}>
+      <p className={styles.appVersion}>{pjson.version}</p>
+      <p className={styles.locationName}>{appstate.device?.location?.title || '• • •'}</p>
       <div className={styles.iconWrapper}>
         <IconAntenna size={20} />
       </div>
