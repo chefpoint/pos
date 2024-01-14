@@ -5,7 +5,7 @@
 import styles from './AppMain.module.css';
 import { useEffect, useContext } from 'react';
 import { Appstate } from '@/contexts/Appstate';
-import { useRouter, useParams } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import useSWR from 'swr';
 import FolderGrid from '../../modules/folders/FolderGrid';
 import ProductGrid from '../../modules/products/ProductGrid';
@@ -27,7 +27,6 @@ export default function AppMain() {
   //
   // A. Setup variables
 
-  const router = useRouter();
   const params = useParams();
   const appstate = useContext(Appstate);
 
@@ -43,9 +42,10 @@ export default function AppMain() {
   useEffect(() => {
     if (deviceData) appstate.setDevice(deviceData);
     if (deviceError) throw new Error('Invalid Device Code');
-  }, [appstate, deviceData, deviceError, params.device_code, router]);
+  }, [appstate, deviceData, deviceError]);
 
   useEffect(() => {
+    // Prevent zoom
     document.addEventListener('touchmove', (event) => event.scale !== 1 && event.preventDefault(), { passive: false });
     return () => {
       document.removeEventListener('touchmove', (event) => event.scale !== 1 && event.preventDefault(), { passive: false });
