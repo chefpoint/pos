@@ -17,8 +17,8 @@
 /* * */
 /* ICON WRAPPER */
 
-.iconWrapperRight,
-.iconWrapperLeft {
+.iconWrapperLeft,
+.iconWrapperRight {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,23 +27,27 @@
   aspect-ratio: 9/8;
 }
 
-.iconWrapperRight {
-  border-left-width: var(--borderwidth-md);
-  border-left-style: solid;
-  border-left-color: inherit;
-}
-
 .iconWrapperLeft {
   border-right-width: var(--borderwidth-md);
   border-right-style: solid;
   border-right-color: inherit;
 }
 
+.iconWrapperRight {
+  border-left-width: var(--borderwidth-md);
+  border-left-style: solid;
+  border-left-color: inherit;
+}
+
 /* * */
 /* LABEL */
 
 .label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
+  height: 100%;
   font-size: 18px;
   font-weight: var(--fontweight-medium);
   text-transform: uppercase;

@@ -2,7 +2,7 @@
 
 import useSWR from 'swr';
 import styles from './CustomerButton.module.css';
-import { useEffect, useContext, useRef, useCallback, useState } from 'react';
+import { useEffect, useContext, useRef, useCallback } from 'react';
 import { Appstate } from '@/contexts/Appstate';
 import { CurrentOrder } from '@/contexts/CurrentOrder';
 import CustomerList from '../../modules/customers/CustomerList';
@@ -23,7 +23,6 @@ export default function CustomerButton() {
   const currentOrder = useContext(CurrentOrder);
   const hasCardReaderTimeout = useRef(false);
   const keyPressesString = useRef('');
-  const [cardIdString, setCardIdString] = useState('');
 
   //
   // B. Fetch data
@@ -45,7 +44,7 @@ export default function CustomerButton() {
         } else if (event.key === 'Enter') {
           const matchedCustomer = allCustomersData.find((entries) => entries.reference === keyPressesString.current);
           if (matchedCustomer) currentOrder.setCustomer(matchedCustomer);
-          else setCardIdString(keyPressesString.current); // Use this to display an error in the UI
+          else currentOrder.setCard(keyPressesString.current);
           keyPressesString.current = '';
         } else {
           if (!keyPressesString.current) keyPressesString.current = '';
@@ -88,7 +87,7 @@ export default function CustomerButton() {
   }
 
   function handleClearCardIdString() {
-    setCardIdString('');
+    currentOrder.setCard(null);
   }
 
   //
@@ -112,10 +111,12 @@ export default function CustomerButton() {
             <p className={styles.label}>{(currentOrder.customer?.first_name || '') + ' ' + (currentOrder.customer?.last_name || '')}</p>
           </AppButton>
         )
-      ) : cardIdString ? (
-        <AppButton color="success" className={styles.appButton} onClick={handleClearCardIdString}>
-          <p className={styles.label}>{cardIdString}</p>
-          <div className={styles.iconWrapperRight}>
+      ) : currentOrder.hasCard ? (
+        <AppButton color="success" className={styles.appButton}>
+          <p className={styles.label} onClick={handleAddCustomer}>
+            {currentOrder.card}
+          </p>
+          <div className={styles.iconWrapperRight} onClick={handleClearCardIdString}>
             <IconBackspace size={25} />
           </div>
         </AppButton>

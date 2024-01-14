@@ -13,8 +13,9 @@ export default function CurrentOrderProvider({ children }) {
   const [items, setItems] = useState([]);
   const [discounts, setDiscounts] = useState([]);
   const [customer, setCustomer] = useState();
-  const [totals, setTotals] = useState();
-  const [payment, setPayment] = useState();
+  const [card, setCard] = useState(null);
+  const [totals, setTotals] = useState(null);
+  const [payment, setPayment] = useState(null);
 
   // CONTEXT
   const contextValue = {
@@ -29,7 +30,15 @@ export default function CurrentOrderProvider({ children }) {
     // Current order customer
     customer: customer,
     hasCustomer: !(customer === null || customer === undefined),
-    setCustomer: setCustomer,
+    setCustomer: (c) => {
+      setCustomer(c);
+      setCard(null);
+    },
+
+    // Current order card
+    card: card,
+    hasCard: !(card === null || card === undefined),
+    setCard: setCard,
 
     // Current order total
     totals: totals,
@@ -72,6 +81,7 @@ export default function CurrentOrderProvider({ children }) {
       setItems([]);
       setDiscounts([]);
       setCustomer();
+      setCard();
       setTotals();
       setPayment();
     },
