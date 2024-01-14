@@ -34,6 +34,7 @@ export default function AppError({ type = 'invalid_device_code' }) {
       <div className={styles.container}>
         <h1 className={styles.title}>Invalid Code</h1>
         <h2 className={styles.subtitle}>Shake your device to fix</h2>
+        <h2 className={styles.subtitle}>A app vai reiniciar em {reloadInSeconds} segundos</h2>
       </div>
     );
   } else {

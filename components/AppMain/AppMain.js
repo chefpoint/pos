@@ -45,6 +45,13 @@ export default function AppMain() {
     else router.push('/');
   }, [appstate, deviceData, deviceError, params.device_code, router]);
 
+  useEffect(() => {
+    document.addEventListener('touchmove', (event) => event.scale !== 1 && event.preventDefault(), { passive: false });
+    return () => {
+      document.removeEventListener('touchmove', (event) => event.scale !== 1 && event.preventDefault(), { passive: false });
+    };
+  });
+
   //
   // D. Render components
 
