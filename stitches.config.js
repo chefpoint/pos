@@ -120,9 +120,6 @@ export const { styled, getCssText } = createStitches({
       md: '15px',
       lg: '25px',
     },
-    fonts: {
-      system: 'system-ui',
-    },
     fontSizes: {
       sm: '12px',
       md: '14px',

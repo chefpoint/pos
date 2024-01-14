@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useContext } from 'react';
 import { CurrentOrder } from '../context/CurrentOrder';
 import { styled } from '@stitches/react';

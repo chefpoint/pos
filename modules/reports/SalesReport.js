@@ -1,7 +1,7 @@
 import { styled } from '@stitches/react';
 import Pannel from '../../components/Pannel';
 import SummaryBox from './SummaryBox';
-import { DatePicker } from '@mantine/dates';
+import { DatePickerInput } from '@mantine/dates';
 import { useContext, useEffect, useState } from 'react';
 import ItemsList from './ItemsList';
 import { Appstate } from '../../context/Appstate';
@@ -54,12 +54,7 @@ export default function SalesReport() {
   const [cashAmount, setCashAmount] = useState();
   const [cardAmount, setCardAmount] = useState();
 
-  const { data: transactions } = useSWR(
-    '/api/transactions/filter' +
-      `?location_id=${appstate.device.location._id}` +
-      `&date_start=${selectedDate.toISOString()}` +
-      `&date_end=${selectedDate.toISOString()}`
-  );
+  const { data: transactions } = useSWR('/api/transactions/filter' + `?location_id=${appstate.device.location._id}` + `&date_start=${selectedDate.toISOString()}` + `&date_end=${selectedDate.toISOString()}`);
 
   useEffect(() => {
     // Check if transactions is set
@@ -123,27 +118,11 @@ export default function SalesReport() {
   return (
     <Pannel title={'Relatório de Vendas'}>
       <Wrapper>
-        <DatePicker
-          size='xl'
-          value={selectedDate}
-          onChange={handleChangeDate}
-          maxDate={new Date()}
-          clearable={false}
-          dropdownType={'modal'}
-        />
+        <DatePickerInput size="xl" value={selectedDate} onChange={handleChangeDate} maxDate={new Date()} clearable={false} dropdownType={'modal'} />
         <Grid>
-          <SummaryBox
-            title={'Total de Vendas s/ IVA'}
-            value={typeof totalSoldAmount !== 'undefined' ? `${totalSoldAmount.toFixed(2)}€` : null}
-          />
-          <SummaryBox
-            title={'Valor em Caixa'}
-            value={typeof cashAmount !== 'undefined' ? `${cashAmount.toFixed(2)}€` : null}
-          />
-          <SummaryBox
-            title={'Valor em Multibanco'}
-            value={typeof cardAmount !== 'undefined' ? `${cardAmount.toFixed(2)}€` : null}
-          />
+          <SummaryBox title={'Total de Vendas s/ IVA'} value={typeof totalSoldAmount !== 'undefined' ? `${totalSoldAmount.toFixed(2)}€` : null} />
+          <SummaryBox title={'Valor em Caixa'} value={typeof cashAmount !== 'undefined' ? `${cashAmount.toFixed(2)}€` : null} />
+          <SummaryBox title={'Valor em Multibanco'} value={typeof cardAmount !== 'undefined' ? `${cardAmount.toFixed(2)}€` : null} />
         </Grid>
         <ItemsList data={formatSoldItems()} />
         <AppVersion>
