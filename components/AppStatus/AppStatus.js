@@ -29,12 +29,12 @@ export default function AppStatus() {
   // C. Transform data
 
   useEffect(() => {
-    if (!currentOrder.hasItems && !currentOrder.hasCustomer) {
+    if (!currentOrder.hasItems && !currentOrder.hasCustomer && !currentOrder.hasCard) {
       if (versionData && versionData.latest !== pjson.version) {
         window.location.reload();
       }
     }
-  }, [currentOrder.hasCustomer, currentOrder.hasItems, versionData]);
+  }, [currentOrder.hasCard, currentOrder.hasCustomer, currentOrder.hasItems, versionData]);
 
   //
   // D. Render components
