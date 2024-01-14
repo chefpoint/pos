@@ -14,12 +14,18 @@
   font-weight: var(--fontweight-bold);
   text-transform: uppercase;
   cursor: pointer;
+  overflow: hidden;
+}
+
+.container:active {
+  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / PRIMARY */
 
-.primary {
+.primary,
+.primary * {
   color: var(--color-gray-0);
   background-color: var(--color-primary-5);
   border-color: var(--color-primary-6);
@@ -30,13 +36,13 @@
   color: var(--color-primary-2);
   background-color: var(--color-primary-6);
   border-color: var(--color-primary-9);
-  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / SECONDARY */
 
-.secondary {
+.secondary,
+.secondary * {
   color: var(--color-gray-11);
   background-color: var(--color-gray-3);
   border-color: var(--color-gray-7);
@@ -47,13 +53,13 @@
   color: var(--color-gray-12);
   background-color: var(--color-gray-8);
   border-color: var(--color-gray-9);
-  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / SUCCESS */
 
-.success {
+.success,
+.success * {
   color: var(--color-gray-0);
   background-color: var(--color-success-5);
   border-color: var(--color-success-6);
@@ -64,13 +70,13 @@
   color: var(--color-success-9);
   background-color: var(--color-success-6);
   border-color: var(--color-success-9);
-  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / WARNING */
 
-.warning {
+.warning,
+.warning * {
   color: var(--color-gray-0);
   background-color: var(--color-warning-5);
   border-color: var(--color-warning-6);
@@ -81,13 +87,13 @@
   color: var(--color-warning-9);
   background-color: var(--color-warning-6);
   border-color: var(--color-warning-9);
-  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / DANGER */
 
-.danger {
+.danger,
+.danger * {
   color: var(--color-gray-0);
   background-color: var(--color-danger-5);
   border-color: var(--color-danger-6);
@@ -98,13 +104,13 @@
   color: var(--color-danger-9);
   background-color: var(--color-danger-6);
   border-color: var(--color-danger-9);
-  box-shadow: var(--boxshadow-sm);
 }
 
 /* * */
 /* COLOR / DISABLED */
 
 .disabled,
+.disabled *,
 .disabled:active,
 .disabled:active * {
   cursor: not-allowed;

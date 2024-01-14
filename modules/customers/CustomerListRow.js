@@ -2,7 +2,7 @@ import { styled } from '@stitches/react';
 import { useContext } from 'react';
 import { Appstate } from '../../context/Appstate';
 import CustomerView from './CustomerView';
-import { GoClippy } from 'react-icons/go';
+import { IconUserEdit } from '@tabler/icons-react';
 
 /* * */
 /* CUSTOMER LIST ROW */
@@ -157,7 +157,7 @@ export default function CustomersListRow({ customer, onSelect, selectedCustomer 
         </InfoContainer>
       </DetailsContainer>
       <MoreDetailsIcon selected={isThisCustomerSelected} onClick={handleView}>
-        <GoClippy />
+        <IconUserEdit size={25} />
       </MoreDetailsIcon>
     </RowContainer>
   );

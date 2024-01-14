@@ -1,18 +1,23 @@
-import { useEffect, useContext, useState } from 'react';
-import { Appstate } from '../context/Appstate';
-import { useRouter } from 'next/router';
+'use client';
+
+/* * */
+
+import { useEffect, useContext } from 'react';
+import { Appstate } from '../../context/Appstate';
+import { useRouter, useParams } from 'next/navigation';
 import { styled } from '@stitches/react';
 import useSWR from 'swr';
-import Loading from '../components/Loading';
-import Overlay from '../components/Overlay';
-import FolderGrid from '../modules/folders/FolderGrid';
-import ProductGrid from '../modules/products/ProductGrid';
-import OrderDetails from '../modules/order/OrderDetails';
-import OrderTotals from '../modules/order/OrderTotals';
-import UserButton from '../modules/users/UserButton';
-import Discounts from '../modules/discounts/Discounts';
-import StatusBar from '../modules/reports/StatusBar';
+import Loading from '@/components/Loading';
+import Overlay from '@/components/Overlay';
+import FolderGrid from '../../modules/folders/FolderGrid';
+import ProductGrid from '../../modules/products/ProductGrid';
+import OrderDetails from '../../modules/order/OrderDetails';
+import OrderTotals from '../../modules/order/OrderTotals';
+import UserButton from '../../modules/users/UserButton';
+import Discounts from '../../modules/discounts/Discounts';
+import StatusBar from '../../modules/reports/StatusBar';
 import CustomerButton from '@/components/CustomerButton/CustomerButton';
+import AppWrapper from '@/components/AppWrapper/AppWrapper';
 
 /* * */
 /* POINT OF SALE */
@@ -82,45 +87,21 @@ export default function PointOfSale() {
   //
 
   const router = useRouter();
-  const { device_code } = router.query;
+  const params = useParams();
 
-  const { data: device } = useSWR(device_code ? `/api/devices/${device_code}` : null);
+  const { data: device } = useSWR(params.device_code && `/api/devices/${params.device_code}`);
   const { data: customers } = useSWR('/api/customers/');
 
   const appstate = useContext(Appstate);
 
   // Set device data in Appstate
   useEffect(() => {
-    if (router.isReady) {
-      if (device_code && !device?.isError) appstate.setDevice(device);
-      else router.push('/'); // Navigate to index.js
-    }
-  }, [appstate, device, device_code, router]);
+    if (params.device_code && !device?.isError) appstate.setDevice(device);
+    else router.push('/'); // Navigate to index.js
+  }, [appstate, device, params.device_code, router]);
 
   /* */
   /* RENDER */
 
-  return device && customers ? (
-    <Container>
-      <RegisterWrapper>
-        <ProductsContainer>
-          <FolderGrid />
-          <ProductGrid />
-        </ProductsContainer>
-        <CheckoutPannel>
-          <UserButton />
-          <CustomerButton />
-          <InnerCheckoutWrapper>
-            <OrderDetails />
-            <Discounts />
-          </InnerCheckoutWrapper>
-          <OrderTotals />
-        </CheckoutPannel>
-      </RegisterWrapper>
-      <StatusBar />
-      <Overlay />
-    </Container>
-  ) : (
-    <Loading />
-  );
+  return device && customers ? <AppWrapper /> : <Loading />;
 }

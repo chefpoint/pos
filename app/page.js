@@ -1,12 +1,10 @@
+'use client';
+
+/* * */
+
 import { styled } from '@stitches/react';
 
 /* * */
-/* IS ERROR */
-/* Displays when no 'device_code' is present. */
-/* * */
-
-/* */
-/* STYLES */
 
 const Container = styled('div', {
   display: 'flex',
@@ -30,7 +28,6 @@ const Subtitle = styled('p', {
 });
 
 /* * */
-/* LOGIC */
 
 export default function IsError() {
   return (
