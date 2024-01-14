@@ -7,12 +7,12 @@ import Loading from '../components/Loading';
 import Overlay from '../components/Overlay';
 import FolderGrid from '../modules/folders/FolderGrid';
 import ProductGrid from '../modules/products/ProductGrid';
-import AssociateCustomer from '../modules/customers/AssociateCustomer';
 import OrderDetails from '../modules/order/OrderDetails';
 import OrderTotals from '../modules/order/OrderTotals';
 import UserButton from '../modules/users/UserButton';
 import Discounts from '../modules/discounts/Discounts';
 import StatusBar from '../modules/reports/StatusBar';
+import CustomerButton from '@/components/CustomerButton/CustomerButton';
 
 /* * */
 /* POINT OF SALE */
@@ -109,7 +109,7 @@ export default function PointOfSale() {
         </ProductsContainer>
         <CheckoutPannel>
           <UserButton />
-          <AssociateCustomer />
+          <CustomerButton />
           <InnerCheckoutWrapper>
             <OrderDetails />
             <Discounts />

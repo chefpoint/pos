@@ -1,0 +1,51 @@
+/* * */
+/* CONTAINER */
+
+.container {
+  margin: var(--size-sm);
+}
+
+/* * */
+/* APP BUTTON */
+
+.appButton {
+  width: 100%;
+  height: 50px;
+  padding: 0 !important;
+}
+
+/* * */
+/* ICON WRAPPER */
+
+.iconWrapperRight,
+.iconWrapperLeft {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  height: 100%;
+  aspect-ratio: 9/8;
+}
+
+.iconWrapperRight {
+  border-left-width: var(--borderwidth-md);
+  border-left-style: solid;
+  border-left-color: inherit;
+}
+
+.iconWrapperLeft {
+  border-right-width: var(--borderwidth-md);
+  border-right-style: solid;
+  border-right-color: inherit;
+}
+
+/* * */
+/* LABEL */
+
+.label {
+  width: 100%;
+  font-size: 18px;
+  font-weight: var(--fontweight-medium);
+  text-transform: uppercase;
+  text-align: center;
+}

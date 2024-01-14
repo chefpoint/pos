@@ -14,6 +14,39 @@
   --color-primary-8: #280074;
   --color-primary-9: #1c0060;
 
+  /* COLOR / INFO */
+  --color-info-1: #cafdfb;
+  --color-info-2: #96f7fb;
+  --color-info-3: #61e5f4;
+  --color-info-4: #3acbea;
+  --color-info-5: #00a6dd;
+  --color-info-6: #0081be;
+  --color-info-7: #00609f;
+  --color-info-8: #004580;
+  --color-info-9: #00316a;
+
+  /* COLOR / SUCCESS */
+  --color-success-1: #c9fcca;
+  --color-success-2: #95f9a1;
+  --color-success-3: #5fee7e;
+  --color-success-4: #37de6c;
+  --color-success-5: #00c853;
+  --color-success-6: #00ac58;
+  --color-success-7: #009058;
+  --color-success-8: #007452;
+  --color-success-9: #00604e;
+
+  /* COLOR / WARNING */
+  --color-warning-1: #fff8cc;
+  --color-warning-2: #ffef99;
+  --color-warning-3: #ffe466;
+  --color-warning-4: #ffda3f;
+  --color-warning-5: #ffc800;
+  --color-warning-6: #dba700;
+  --color-warning-7: #b78700;
+  --color-warning-8: #936a00;
+  --color-warning-9: #7a5500;
+
   /* COLOR / DANGER */
   --color-danger-1: #fde4cb;
   --color-danger-2: #fcc397;
@@ -50,10 +83,21 @@
   --borderwidth-sm: 1px;
   --borderwidth-md: 2px;
 
+  /* BORDER WIDTH */
+  --borderradius-sm: 3px;
+  --borderradius-md: 5px;
+  --borderradius-lg: 15px;
+  --borderradius-pill: 999px;
+
   /* FONT WEIGHT */
   --fontweight-regular: 500;
   --fontweight-medium: 600;
   --fontweight-bold: 700;
+
+  /* BOX SHADOW */
+  --boxshadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --boxshadow-md: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+  --boxshadow-lg: 0 0 30px 0 rgba(0, 0, 0, 0.1);
 
   /* * */
 }
