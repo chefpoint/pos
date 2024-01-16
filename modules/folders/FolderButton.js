@@ -19,7 +19,7 @@ const FolderBtn = styled('div', {
   height: '40px',
   textTransform: 'uppercase',
   fontWeight: '$bold',
-  fontSize: '14px',
+  fontSize: '13px',
   padding: '$xs $md',
   cursor: 'pointer',
   variants: {
