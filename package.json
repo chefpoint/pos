@@ -1,6 +1,6 @@
 {
     "name": "@chefpoint/pos",
-    "version": "2024.02.14-0008",
+    "version": "2024.02.14-0010",
     "private": true,
     "scripts": {
         "dev": "next dev",
@@ -10,17 +10,17 @@
         "lint": "next lint"
     },
     "dependencies": {
-        "@mantine/core": "7.4.1",
-        "@mantine/dates": "7.4.1",
-        "@mantine/form": "7.4.1",
-        "@mantine/hooks": "7.4.1",
+        "@mantine/core": "7.5.2",
+        "@mantine/dates": "7.5.2",
+        "@mantine/form": "7.5.2",
+        "@mantine/hooks": "7.5.2",
         "@stitches/react": "1.2.8",
-        "@tabler/icons-react": "2.46.0",
+        "@tabler/icons-react": "2.47.0",
         "dayjs": "1.11.10",
         "lottie-web": "5.12.2",
         "luxon": "3.4.4",
-        "mongoose": "8.0.4",
-        "next": "14.0.4",
+        "mongoose": "8.1.2",
+        "next": "14.1.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-icons": "5.0.1",
@@ -29,9 +29,9 @@
     },
     "devDependencies": {
         "eslint": "8.56.0",
-        "eslint-config-next": "14.0.4",
-        "postcss": "8.4.33",
-        "postcss-preset-mantine": "1.12.3",
+        "eslint-config-next": "14.1.0",
+        "postcss": "8.4.35",
+        "postcss-preset-mantine": "1.13.0",
         "postcss-simple-vars": "7.0.1",
         "typescript": "5.3.3"
     }
