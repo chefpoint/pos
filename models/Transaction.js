@@ -126,15 +126,15 @@ module.exports =
           {
             _id: {
               type: String,
-              maxlength: 30,
+              maxlength: 100,
             },
             title: {
               type: String,
-              maxlength: 30,
+              maxlength: 100,
             },
             subtitle: {
               type: String,
-              maxlength: 50,
+              maxlength: 100,
             },
             description: {
               type: String,
